@@ -23,7 +23,7 @@ export const StyledInput = styled.input`
     }
 
     ${props => props.type === "submit" && `
-        color: #DBDBDB;
+        color: white;
         background-color: #52B6FF;
         border: none;
         margin-bottom: 25px;

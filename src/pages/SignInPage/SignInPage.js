@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 
 import logo from "../../assets/logo.svg";
+import { logInUserUrl } from "../../constants/urls";
 
 import SignFields from "../../components/SignFields/SignFields";
 import Input from "../../components/Input/Input";
 import LogoImage from "../../components/LogoImage/LogoImage";
 import SignContainer from "../../components/SignContainer/SignContainer";
 import SignLink from "../../components/SignLink/SignLink";
-import { logInUserUrl } from "../../constants/urls";
+
+import { UserContext } from "../../contexts/UserContext";
 
 export default function SignInPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const userContext = useContext(UserContext);
 
     function LogIn(e){
         e.preventDefault();
@@ -24,10 +27,10 @@ export default function SignInPage(){
 
         const promisse = axios.post(logInUserUrl, user);
         promisse.then((res) => {
-            console.log(res.data);
+            userContext.LogInUser(res.data);
         });
         promisse.catch((err) => {
-            console.log(err.message);
+            alert(err.message);
         });
     }
 

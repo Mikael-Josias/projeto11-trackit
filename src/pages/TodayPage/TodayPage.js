@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 
 import TopHeader from "../../components/TopHeader/TopHeader";
+import FooterMenu from "../../components/FooterMenu/FooterMenu";
 
 
 export default function TodayPage(){
@@ -21,6 +22,7 @@ export default function TodayPage(){
         <>
             <TopHeader/>
             Today is the day!
+            <FooterMenu/>
         </>
     );
 }

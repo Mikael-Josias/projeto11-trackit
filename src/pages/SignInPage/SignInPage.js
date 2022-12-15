@@ -15,6 +15,7 @@ import { UserContext } from "../../contexts/UserContext";
 export default function SignInPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const userContext = useContext(UserContext);
 
     function LogIn(e){
@@ -25,11 +26,14 @@ export default function SignInPage(){
             password
         }
 
+        setLoading(true);
         const promisse = axios.post(logInUserUrl, user);
         promisse.then((res) => {
+            setLoading(false);
             userContext.LogInUser(res.data);
         });
         promisse.catch((err) => {
+            setLoading(false);
             alert(err.message);
         });
     }
@@ -39,10 +43,10 @@ export default function SignInPage(){
             <LogoImage src={logo} />
 
             <SignFields onSubmit={(e) => LogIn(e)} >
-                <Input type="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                <Input type="password" placeholder="senha" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Input type="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
+                <Input type="password" placeholder="senha" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} />
 
-                <Input type="submit" value="Entrar"/>
+                <Input type="submit" value="Entrar" disabled={loading} />
             </SignFields>
 
             <SignLink to="/cadastro" valueText="Não tem uma conta? Cadastre-se!" />

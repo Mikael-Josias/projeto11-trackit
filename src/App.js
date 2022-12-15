@@ -4,6 +4,7 @@ import UserProvider from "./contexts/UserContext";
 
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import TodayPage from "./pages/TodayPage/TodayPage";
 
 function App() {
 	const navigate = useNavigate();
@@ -19,6 +20,7 @@ function App() {
 			<Routes>
 				<Route exact path="/" element={<SignInPage/>} />
 				<Route exact path="/cadastro" element={<SignUpPage/>} />
+				<Route exact path="/hoje" element={<TodayPage/>} />
 			</Routes>				
 		</UserProvider>
 

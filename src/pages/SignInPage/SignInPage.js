@@ -11,11 +11,15 @@ import SignContainer from "../../components/SignContainer/SignContainer";
 import SignLink from "../../components/SignLink/SignLink";
 
 import { UserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInPage(){
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+
     const userContext = useContext(UserContext);
 
     function LogIn(e){
@@ -31,6 +35,7 @@ export default function SignInPage(){
         promisse.then((res) => {
             setLoading(false);
             userContext.LogInUser(res.data);
+            navigate("/hoje");
         });
         promisse.catch((err) => {
             setLoading(false);

@@ -1,3 +1,6 @@
+const baseUrl = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit";
 
-export const registerNewUserUrl = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up";
-export const logInUserUrl = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login";
+export const registerNewUserUrl = baseUrl + "/auth/sign-up";
+export const logInUserUrl = baseUrl + "/auth/login";
+
+export const getTodayHabitsListUrl = baseUrl + "/habits/today";

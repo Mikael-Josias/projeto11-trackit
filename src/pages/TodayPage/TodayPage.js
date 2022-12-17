@@ -1,10 +1,13 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
+import { getTodayHabitsListUrl } from "../../constants/urls";
 import { UserContext } from "../../contexts/UserContext";
 
 import TopHeader from "../../components/TopHeader/TopHeader";
 import FooterMenu from "../../components/FooterMenu/FooterMenu";
+import PageContent from "../../components/PageContent/PageContent";
 
 
 export default function TodayPage(){
@@ -13,15 +16,25 @@ export default function TodayPage(){
     
     useEffect(() => {
         if (userData === undefined) {
-            alert("Desculpe, sua sessão expirou!");
             navigate("/");
         }
-    }, [userData]);
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userData.token}`
+            }
+        }
+
+        const promisse = axios.get(getTodayHabitsListUrl, config);
+        promisse.then((res) => console.log(res));
+        promisse.catch((err) => console.log(err));
+    }, []);
 
     return (
         <>
             <TopHeader/>
-            Today is the day!
+            <PageContent>
+                Esté são os hábitos!
+            </PageContent>
             <FooterMenu/>
         </>
     );

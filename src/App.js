@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import UserProvider from "./contexts/UserContext";
+import UserProvider, { UserContext } from "./contexts/UserContext";
 
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
@@ -9,21 +9,14 @@ import TodayPage from "./pages/TodayPage/TodayPage";
 function App() {
 	const navigate = useNavigate();
 	const [authToken, setAuthToken] = useState(null);
-
-	//Se não existir token, então usuário deve logar novamente.
-	// if (authToken === null) {
-	// 	navigate("/");
-	// }
+	const { userData } = useContext(UserContext);
 
 	return (
-		<UserProvider>
-			<Routes>
-				<Route exact path="/" element={<SignInPage/>} />
-				<Route exact path="/cadastro" element={<SignUpPage/>} />
-				<Route exact path="/hoje" element={<TodayPage/>} />
-			</Routes>				
-		</UserProvider>
-
+		<Routes>
+			<Route exact path="/" element={<SignInPage/>} />
+			<Route exact path="/cadastro" element={<SignUpPage/>} />
+			<Route exact path="/hoje" element={<TodayPage/>} />
+		</Routes>		
 	);
 }
 

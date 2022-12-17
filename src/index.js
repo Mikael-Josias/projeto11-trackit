@@ -6,6 +6,7 @@ import "./styles/fonts.css";
 import GlobalStyle from './styles/GlobalStyle';
 
 import App from './App';
+import UserProvider from './contexts/UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,10 @@ root.render(
 		<GlobalStyle/>
 		
 		<BrowserRouter>
-			<App/>
+
+			<UserProvider>
+				<App/>
+			</UserProvider>
 		</BrowserRouter>
 	</React.StrictMode>
 );

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { getTodayHabitsListUrl } from "../../constants/urls";
 import { UserContext } from "../../contexts/UserContext";
+import { toWeekday } from "../../utils/utils";
 
 import TopHeader from "../../components/TopHeader/TopHeader";
 import FooterMenu from "../../components/FooterMenu/FooterMenu";
@@ -14,6 +15,12 @@ import ContentTitle from "../../components/ContentTitle/ContentTitle";
 export default function TodayPage(){
     const navigate = useNavigate();
     const { userData } = useContext(UserContext);
+
+    const today = {
+        weekday: toWeekday[new Date().getUTCDay()],
+        day: new Date().getUTCDate(),
+        month: new Date().getUTCMonth() + 1
+    }
 
     useEffect(() => {
         const config = {
@@ -31,7 +38,7 @@ export default function TodayPage(){
         <>
             <TopHeader/>
             <PageContent>
-                <ContentTitle showButton={false}/>
+                <ContentTitle title={`${today.weekday}, ${today.day}/${today.month}`} showButton={false}/>
                 
             </PageContent>
             <FooterMenu/>

@@ -13,20 +13,23 @@ import PageContent from "../../components/PageContent/PageContent";
 export default function TodayPage(){
     const navigate = useNavigate();
     const { userData } = useContext(UserContext);
-    
+    console.log(!userData)
     useEffect(() => {
-        if (userData === undefined) {
+        
+        if (userData) {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${userData? userData.token : null}`
+                }
+            }
+    
+            const promisse = axios.get(getTodayHabitsListUrl, config);
+            promisse.then((res) => console.log(res));
+            promisse.catch((err) => console.log(err));   
+        }else{
             navigate("/");
         }
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userData.token}`
-            }
-        }
 
-        const promisse = axios.get(getTodayHabitsListUrl, config);
-        promisse.then((res) => console.log(res));
-        promisse.catch((err) => console.log(err));
     }, []);
 
     return (

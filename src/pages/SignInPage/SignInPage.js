@@ -29,13 +29,19 @@ export default function SignInPage(){
             email,
             password
         }
-
+        
         setLoading(true);
         const promisse = axios.post(logInUserUrl, user);
+        
         promisse.then((res) => {
+            
             setLoading(false);
             userContext.LogInUser(res.data);
+
+            
             navigate("/hoje");
+
+            
         });
         promisse.catch((err) => {
             setLoading(false);

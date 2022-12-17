@@ -8,6 +8,7 @@ import { UserContext } from "../../contexts/UserContext";
 import TopHeader from "../../components/TopHeader/TopHeader";
 import FooterMenu from "../../components/FooterMenu/FooterMenu";
 import PageContent from "../../components/PageContent/PageContent";
+import ContentTitle from "../../components/ContentTitle/ContentTitle";
 
 
 export default function TodayPage(){
@@ -36,6 +37,7 @@ export default function TodayPage(){
         <>
             <TopHeader/>
             <PageContent>
+                <ContentTitle/>
                 Esté são os hábitos!
             </PageContent>
             <FooterMenu/>

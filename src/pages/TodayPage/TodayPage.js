@@ -31,8 +31,8 @@ export default function TodayPage(){
         <>
             <TopHeader/>
             <PageContent>
-                <ContentTitle/>
-                Esté são os hábitos!
+                <ContentTitle showButton={false}/>
+                
             </PageContent>
             <FooterMenu/>
         </>

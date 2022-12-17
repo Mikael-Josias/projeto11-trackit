@@ -1,7 +1,9 @@
 import { toWeekday } from "../../utils/utils";
-import { ContentContainer, StyledTitle } from "./styled";
+import { ContentContainer, CreateHabitButton, SpanText, StyledTitle } from "./styled";
 
 export default function ContentTitle(props){
+    const {showButton} = props;
+
     const today = {
         weekday: toWeekday[new Date().getUTCDay()],
         day: new Date().getUTCDate(),
@@ -10,7 +12,11 @@ export default function ContentTitle(props){
 
     return (
         <ContentContainer>
-            <StyledTitle>{`${today.weekday}, ${today.day}/${today.month}`}</StyledTitle>
+            <div>
+                <StyledTitle>{`${today.weekday}, ${today.day}/${today.month}`}</StyledTitle>
+                {showButton? <CreateHabitButton>+</CreateHabitButton> : null}
+            </div>
+            <SpanText>Nenhum hábito concluído ainda</SpanText>
         </ContentContainer>
     );
 }

@@ -1,8 +1,9 @@
+import { ContentWrapper } from "./styled";
 
 export default function PageContent(props){
     return (
-        <main>
+        <ContentWrapper>
             {props.children}
-        </main>
+        </ContentWrapper>
     );
 }

@@ -29,12 +29,7 @@ export const ButtonOption = styled.button`
     border: none;
     cursor: pointer;
 
-    &:nth-child(1){
-        margin-left: 35px;
-    }
-    &:nth-child(3){
-        margin-right: 35px;
-    }
+    margin: 0 35px;
 `;
 
 export const RoundButton = styled(ButtonOption)`
@@ -46,6 +41,7 @@ export const RoundButton = styled(ButtonOption)`
     background-color: #52B6FF;
     border-radius: 100%;
 
+    margin: 0;
     height: 90px;
     width: 90px;
 `;

@@ -18,9 +18,9 @@ import { ProgressBarContext } from "../../contexts/ProgressBarContext";
 export default function TodayPage(){
     const [todayHabits, setTodayHabits] = useState([]);
     const { userData } = useContext(UserContext);
-    const { calculateProgress } = useContext(ProgressBarContext);
+    const { progress ,calculateProgress } = useContext(ProgressBarContext);
 
-    let habitsDone = 0, habitsTotal = 0;
+    const [habitsDone, setHabitsDone] = useState(0), habitsTotal = 0;
 
     const today = {
         weekday: toWeekday[new Date().getUTCDay()],
@@ -41,14 +41,15 @@ export default function TodayPage(){
             console.log(res.data);
             setTodayHabits(res.data);
 
-            habitsTotal = res.data.length;
+            let n = 0;
             res.data.forEach((d) => {
                 if (d.done) {
-                    habitsDone += 1;
+                    n += 1;
                 }
             });
             
-            calculateProgress(habitsDone, habitsTotal);
+            setHabitsDone(n);
+            calculateProgress(n, res.data.length);
         });
         promisse.catch((err) => {alert(err.message);});
         
@@ -72,6 +73,10 @@ export default function TodayPage(){
         });
 
         setTodayHabits(newData);
+
+        const n = habitsDone + 1;
+        setHabitsDone(n);
+        calculateProgress(n, newData.length);
     }
 
     return (
@@ -82,7 +87,7 @@ export default function TodayPage(){
                     <div>
                         <Title>{`${today.weekday}, ${today.day}/${today.month}`}</Title>
                     </div>
-                    <TextSpan colored="#BABABA">Nenhum hábito concluído ainda</TextSpan>
+                    <TextSpan colored={progress === 0 ?"#BABABA" : "#8FC549"}>{progress === 0? `Nenhum hábito concluído ainda` : `${progress}% dos hábitos concluídos`}</TextSpan>
                 </ContentTitle>
 
                 {todayHabits.map((th) => <TodayHabitCard key={th.id} data={th} checkHabit={checkHabit} />)}

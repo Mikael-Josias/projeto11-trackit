@@ -1,6 +1,7 @@
+
 import { StyledInput } from "../Input/styled";
 import WeekdaysCheck from "../WeekdaysCheck/WeekdaysCheck";
-import { StyledCard } from "./styled";
+import { ButtonsOptions, StyledButton, StyledCard } from "./styled";
 
 export default function HabitCard(props){
     return (
@@ -15,6 +16,10 @@ export default function HabitCard(props){
                 <WeekdaysCheck value="S" />
                 <WeekdaysCheck value="S" />
             </div>
+            <ButtonsOptions>
+                <StyledButton colored="white">Cancelar</StyledButton>
+                <StyledButton colored="#52B6FF">Salvar</StyledButton>
+            </ButtonsOptions>
         </StyledCard>
     );
 }

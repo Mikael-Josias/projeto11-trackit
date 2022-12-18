@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
-import { getTodayHabitsListUrl } from "../../constants/urls";
+import { getTodayHabitsListUrl, postCheckHabit } from "../../constants/urls";
 import { UserContext } from "../../contexts/UserContext";
 import { toWeekday } from "../../utils/utils";
 
@@ -24,12 +24,14 @@ export default function TodayPage(){
         month: new Date().getUTCMonth() + 1
     }
 
-    useEffect(() => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userData? userData.token : null}`
-            }
+    const config = {
+        headers: {
+            Authorization: `Bearer ${userData? userData.token : null}`
         }
+    }
+
+    useEffect(() => {
+        
         const promisse = axios.get(getTodayHabitsListUrl, config);
         promisse.then((res) => {
             console.log(res.data);
@@ -38,6 +40,25 @@ export default function TodayPage(){
         promisse.catch((err) => {alert(err.message);});
         
     }, []);
+
+    const checkHabit = (id, data) => {
+        const promisse = axios.post(postCheckHabit + `${id}/check`, {}, config);
+        promisse.then(() => {
+            console.log("sucesso");
+        });
+        promisse.catch(() => {
+            console.log("erro");
+        });
+
+        const newData = [...todayHabits];
+        newData.forEach((d) => {
+            if (d.id === data.id) {
+                d.done = true;
+            }
+        });
+
+        setTodayHabits(newData);
+    }
 
     return (
         <>
@@ -50,7 +71,7 @@ export default function TodayPage(){
                     <TextSpan colored="#BABABA">Nenhum hábito concluído ainda</TextSpan>
                 </ContentTitle>
 
-                {todayHabits.map((th) => <TodayHabitCard key={th.id} data={th} />)}
+                {todayHabits.map((th) => <TodayHabitCard key={th.id} data={th} checkHabit={checkHabit} />)}
             </PageContent>
             <FooterMenu/>
         </>

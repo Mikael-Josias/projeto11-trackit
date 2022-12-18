@@ -7,3 +7,5 @@ export const getTodayHabitsListUrl = baseUrl + "/habits/today";
 export const postNewHabit = baseUrl + "/habits";
 export const getHabitList = baseUrl + "/habits";
 export const deleteHabit = baseUrl + "/habits/";
+
+export const postCheckHabit = baseUrl + "/habits/";

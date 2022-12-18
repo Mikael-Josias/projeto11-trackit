@@ -5,6 +5,7 @@ import TextSpan from "../ContentTitle/TextSpan";
 
 export default function TodayHabitCard(props){
     const {data} = props;
+    const {checkHabit} = props;
 
     return (
         <HabitCard>
@@ -15,7 +16,7 @@ export default function TodayHabitCard(props){
                 <MiniSpan>Seu recorde: {data.highestSequence} dia(s)</MiniSpan>
             </div>
             <div>
-                <StyledCheck type="checkbox" id={data.id}/>
+                <StyledCheck type="checkbox" id={data.id} checked={data.done} disabled={data.done} onChange={() => checkHabit(data.id, data)} />
                 <label htmlFor={data.id}><img src={checkIcon} /></label>
             </div>
         </HabitCard>

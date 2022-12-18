@@ -7,6 +7,7 @@ import GlobalStyle from './styles/GlobalStyle';
 
 import App from './App';
 import UserProvider from './contexts/UserContext';
+import ProgressBarProvider from './contexts/ProgressBarContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +17,9 @@ root.render(
 		<BrowserRouter>
 
 			<UserProvider>
-				<App/>
+				<ProgressBarProvider>
+					<App/>
+				</ProgressBarProvider>
 			</UserProvider>
 		</BrowserRouter>
 	</React.StrictMode>

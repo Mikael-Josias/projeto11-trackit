@@ -32,15 +32,11 @@ export const ButtonOption = styled.button`
     margin: 0 35px;
 `;
 
-export const RoundButton = styled(ButtonOption)`
+export const RoundButton = styled.div`
     position: absolute;
     top: -30px;
     left: calc(50% - 45px);
-
     color: white;
-    background-color: #52B6FF;
-    border-radius: 100%;
-
     margin: 0;
     height: 90px;
     width: 90px;

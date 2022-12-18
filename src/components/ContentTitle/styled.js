@@ -21,7 +21,6 @@ export const SpanText = styled.span`
     font-size: 18px;
     font-weight: 400;
     color: ${props => props.colored && props.colored};
-    margin-top: 30px;
 `;
 
 export const CreateButton = styled.button`

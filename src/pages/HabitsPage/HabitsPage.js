@@ -12,6 +12,11 @@ import TopHeader from "../../components/TopHeader/TopHeader";
 
 export default function HabitsPage(){
     const [showCreateHabit, setShowCreateHabit] = useState(false);
+
+    const hideCreateHabit = () => {
+        setShowCreateHabit(false);
+    }
+
     return (
         <>
             <TopHeader/>
@@ -22,7 +27,7 @@ export default function HabitsPage(){
                         <CreateHabitButton onClick={() => {setShowCreateHabit(!showCreateHabit);}}>+</CreateHabitButton>
                     </div>
                 </ContentTitle>
-                {showCreateHabit? <HabitCard/> : null}
+                {showCreateHabit? <HabitCard cancelButton={hideCreateHabit}/> : null}
                 <TextSpan colored="#666666">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</TextSpan>
             </PageContent>
             <FooterMenu/>

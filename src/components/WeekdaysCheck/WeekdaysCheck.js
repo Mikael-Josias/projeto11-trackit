@@ -3,8 +3,8 @@ import { CheckContainer, CheckDay, CheckText } from "./styled";
 export default function WeekdaysCheck(props){
     return (
         <CheckContainer>
-            <CheckDay type="checkbox" id="1" />
-            <CheckText htmlFor="1">{props.value}</CheckText>
+            <CheckDay type="checkbox" id={props.realId} />
+            <CheckText htmlFor={props.realId}>{props.value}</CheckText>
         </CheckContainer>
     );
 }

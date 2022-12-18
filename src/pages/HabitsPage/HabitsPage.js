@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
 import ContentTitle from "../../components/ContentTitle/ContentTitle";
@@ -11,13 +11,35 @@ import HabitCard from "../../components/HabitCard/HabitCard";
 import PageContent from "../../components/PageContent/PageContent";
 import TopHeader from "../../components/TopHeader/TopHeader";
 import axios from "axios";
-import { postNewHabit } from "../../constants/urls";
+import { getHabitList, postNewHabit } from "../../constants/urls";
 
 export default function HabitsPage(){
     const [showCreateHabit, setShowCreateHabit] = useState(false);
     const [inputHabitName, setInputHabitName] = useState("");
     const [checkHabitDays, setCheckHabitDays] = useState([]);
+    const [habitsList, setHabitsList] = useState([]);
+
     const { userData } = useContext(UserContext);
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${userData? userData.token : null}`
+        }
+    }
+
+    useEffect(() => {
+
+        const promisse = axios.get(getHabitList, config);
+        promisse.then((res) => {
+            console.log(res.data);
+            setHabitsList(res.data);
+        });
+        promisse.catch((err) => {
+            console.log(err.data);
+        });
+
+    }, []);
+
     const hideCreateHabit = () => {
         setShowCreateHabit(false);
     };
@@ -42,11 +64,6 @@ export default function HabitsPage(){
             days: checkHabitDays
         }
 
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userData? userData.token : null}`
-            }
-        }
 
         const promisse = axios.post(postNewHabit, newHabit, config);
         promisse.then((res) => {console.log(res.data)});
@@ -63,8 +80,12 @@ export default function HabitsPage(){
                         <CreateHabitButton onClick={() => {setShowCreateHabit(!showCreateHabit);}}>+</CreateHabitButton>
                     </div>
                 </ContentTitle>
+                
                 {showCreateHabit? <HabitCard inputHabitName={inputHabitName} setInputHabitName={setInputHabitName} selectWeekDay={selectWeekDay} cancelButton={hideCreateHabit} saveButton={createNewHabit} /> : null}
-                <TextSpan colored="#666666">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</TextSpan>
+                
+                {habitsList === []? <TextSpan colored="#666666">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</TextSpan> : null}
+
+                {habitsList.map(h => <div key={h.id}>{h.name}</div>)}
             </PageContent>
             <FooterMenu/>
         </>

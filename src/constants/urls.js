@@ -5,3 +5,4 @@ export const logInUserUrl = baseUrl + "/auth/login";
 
 export const getTodayHabitsListUrl = baseUrl + "/habits/today";
 export const postNewHabit = baseUrl + "/habits";
+export const getHabitList = baseUrl + "/habits";

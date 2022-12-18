@@ -29,6 +29,15 @@ export default function HabitsPage(){
 
     useEffect(() => {
 
+        getHabits();
+
+    }, [ , ]);
+
+    const hideCreateHabit = () => {
+        setShowCreateHabit(false);
+    };
+
+    const getHabits = () => {
         const promisse = axios.get(getHabitList, config);
         promisse.then((res) => {
             console.log(res.data);
@@ -37,12 +46,7 @@ export default function HabitsPage(){
         promisse.catch((err) => {
             console.log(err.data);
         });
-
-    }, []);
-
-    const hideCreateHabit = () => {
-        setShowCreateHabit(false);
-    };
+    }
 
     const selectWeekDay = (id) => {
         const newDays = [...checkHabitDays];
@@ -67,8 +71,20 @@ export default function HabitsPage(){
 
 
         const promisse = axios.post(postNewHabit, newHabit, config);
-        promisse.then((res) => {console.log(res.data)});
-        promisse.catch((err) => {alert(err.message)});
+        promisse.then((res) => {
+            console.log(res.data);
+            getHabits();
+
+        });
+        promisse.catch((err) => {
+            alert(err.message);
+            
+        });
+
+
+        hideCreateHabit();
+        setInputHabitName("");
+        setCheckHabitDays([]);
     };
 
     return (

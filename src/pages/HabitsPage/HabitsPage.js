@@ -53,6 +53,7 @@ export default function HabitsPage(){
             newDays.push(id);
         }
 
+        console.log(newDays);
         setCheckHabitDays(newDays);
     }
 

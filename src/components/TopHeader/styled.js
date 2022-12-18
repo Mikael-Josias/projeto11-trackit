@@ -10,6 +10,7 @@ export const StyledHeader = styled.header`
     background-color: #126BA5;
     height: 70px;
     width: 100%;
+    z-index: 10;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 `;
 

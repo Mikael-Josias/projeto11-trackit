@@ -20,6 +20,7 @@ export const StyledButton = styled.button`
     color: ${props => props.colored === "white" ? "#52B6FF" : "white"};
     border: none;
     border-radius: 5px;
+    margin: 0;
     height: 35px;
     width: 85px;
     cursor: pointer;

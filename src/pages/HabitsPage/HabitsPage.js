@@ -81,11 +81,11 @@ export default function HabitsPage(){
                     </div>
                 </ContentTitle>
                 
-                {showCreateHabit? <HabitCard inputHabitName={inputHabitName} setInputHabitName={setInputHabitName} selectWeekDay={selectWeekDay} cancelButton={hideCreateHabit} saveButton={createNewHabit} /> : null}
+                {showCreateHabit? <HabitCard typeCard="create" isAvailable={true} inputHabitName={inputHabitName} setInputHabitName={setInputHabitName} selectWeekDay={selectWeekDay} cancelButton={hideCreateHabit} saveButton={createNewHabit} /> : null}
                 
                 {habitsList === []? <TextSpan colored="#666666">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</TextSpan> : null}
 
-                {habitsList.map(h => <div key={h.id}>{h.name}</div>)}
+                {habitsList.map((h, i) => <HabitCard isAvailable={false} isChecked={h.days} key={h.id}><TextSpan colored="#666666">{h.name}</TextSpan></HabitCard>)}
             </PageContent>
             <FooterMenu/>
         </>

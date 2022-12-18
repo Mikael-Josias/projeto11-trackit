@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const ContentContainer = styled.div`
-    padding: 0 20px;
-
+    margin-bottom: 30px;
     & div{
         display: flex;
         justify-content: space-between;
@@ -20,7 +19,7 @@ export const StyledTitle = styled.h2`
 export const SpanText = styled.span`
     font-size: 18px;
     font-weight: 400;
-    color: #BABABA;
+    color: ${props => props.colored && props.colored};
 `;
 
 export const CreateButton = styled.button`

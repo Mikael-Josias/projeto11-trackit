@@ -44,7 +44,7 @@ export default function TodayPage(){
                     <div>
                         <Title>{`${today.weekday}, ${today.day}/${today.month}`}</Title>
                     </div>
-                    <TextSpan>Nenhum hábito concluído ainda</TextSpan>
+                    <TextSpan colored="#BABABA">Nenhum hábito concluído ainda</TextSpan>
                 </ContentTitle>
                 
             </PageContent>

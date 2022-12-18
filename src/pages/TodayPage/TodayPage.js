@@ -10,6 +10,8 @@ import TopHeader from "../../components/TopHeader/TopHeader";
 import FooterMenu from "../../components/FooterMenu/FooterMenu";
 import PageContent from "../../components/PageContent/PageContent";
 import ContentTitle from "../../components/ContentTitle/ContentTitle";
+import Title from "../../components/ContentTitle/Title";
+import TextSpan from "../../components/ContentTitle/TextSpan";
 
 
 export default function TodayPage(){
@@ -38,7 +40,12 @@ export default function TodayPage(){
         <>
             <TopHeader/>
             <PageContent>
-                <ContentTitle title={`${today.weekday}, ${today.day}/${today.month}`} showButton={false}/>
+                <ContentTitle showButton={false}>
+                    <div>
+                        <Title>{`${today.weekday}, ${today.day}/${today.month}`}</Title>
+                    </div>
+                    <TextSpan>Nenhum hábito concluído ainda</TextSpan>
+                </ContentTitle>
                 
             </PageContent>
             <FooterMenu/>

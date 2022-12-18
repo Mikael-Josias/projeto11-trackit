@@ -23,7 +23,7 @@ export const SpanText = styled.span`
     color: #BABABA;
 `;
 
-export const CreateHabitButton = styled.button`
+export const CreateButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;

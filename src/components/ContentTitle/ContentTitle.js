@@ -1,17 +1,14 @@
-import { ContentContainer, CreateHabitButton, SpanText, StyledTitle } from "./styled";
+import { ContentContainer } from "./styled";
+import Title from "./Title";
 
 export default function ContentTitle(props){
-    const {title, showButton} = props;
+    const {showButton} = props;
 
     
 
     return (
         <ContentContainer>
-            <div>
-                <StyledTitle>{title}</StyledTitle>
-                {showButton? <CreateHabitButton>+</CreateHabitButton> : null}
-            </div>
-            {!showButton? <SpanText>Nenhum hábito concluído ainda</SpanText> : null}
+            {props.children}
         </ContentContainer>
     );
 }

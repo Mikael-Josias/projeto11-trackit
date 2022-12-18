@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import { getTodayHabitsListUrl } from "../../constants/urls";
@@ -12,10 +11,11 @@ import PageContent from "../../components/PageContent/PageContent";
 import ContentTitle from "../../components/ContentTitle/ContentTitle";
 import Title from "../../components/ContentTitle/Title";
 import TextSpan from "../../components/ContentTitle/TextSpan";
+import TodayHabitCard from "../../components/TodayHabitCard.js/TodayHabitCard";
 
 
 export default function TodayPage(){
-    const navigate = useNavigate();
+    const [todayHabits, setTodayHabits] = useState([]);
     const { userData } = useContext(UserContext);
 
     const today = {
@@ -31,8 +31,11 @@ export default function TodayPage(){
             }
         }
         const promisse = axios.get(getTodayHabitsListUrl, config);
-        promisse.then((res) => {console.log(res);});
-        promisse.catch((err) => {console.log(err);});
+        promisse.then((res) => {
+            console.log(res.data);
+            setTodayHabits(res.data);
+        });
+        promisse.catch((err) => {alert(err.message);});
         
     }, []);
 
@@ -46,7 +49,8 @@ export default function TodayPage(){
                     </div>
                     <TextSpan colored="#BABABA">Nenhum hábito concluído ainda</TextSpan>
                 </ContentTitle>
-                
+
+                {todayHabits.map((th) => <TodayHabitCard key={th.id} data={th} />)}
             </PageContent>
             <FooterMenu/>
         </>

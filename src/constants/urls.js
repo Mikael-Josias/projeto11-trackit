@@ -9,3 +9,4 @@ export const getHabitList = baseUrl + "/habits";
 export const deleteHabit = baseUrl + "/habits/";
 
 export const postCheckHabit = baseUrl + "/habits/";
+export const postUncheckHabit = baseUrl + "/habits/"

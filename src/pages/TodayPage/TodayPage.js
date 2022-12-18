@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
-import { getTodayHabitsListUrl, postCheckHabit } from "../../constants/urls";
+import { getTodayHabitsListUrl, postCheckHabit, postUncheckHabit } from "../../constants/urls";
 import { UserContext } from "../../contexts/UserContext";
 import { toWeekday } from "../../utils/utils";
 
@@ -56,7 +56,15 @@ export default function TodayPage(){
     }, []);
 
     const checkHabit = (id, data) => {
-        const promisse = axios.post(postCheckHabit + `${id}/check`, {}, config);
+        let path = "check";
+        let n = habitsDone + 1;
+        
+        if (data.done) {
+            path = "uncheck";
+            n -= 2;
+        }
+
+        const promisse = axios.post(postCheckHabit + `${id}/${path}`, {}, config);
         promisse.then(() => {
             console.log("sucesso");
         });
@@ -68,13 +76,16 @@ export default function TodayPage(){
 
         newData.forEach((d) => {
             if (d.id === data.id) {
-                d.done = true;
+                if (data.done) {
+                    data.done = false;
+                }else{
+                    data.done = true;
+                }
             }
         });
 
         setTodayHabits(newData);
 
-        const n = habitsDone + 1;
         setHabitsDone(n);
         calculateProgress(n, newData.length);
     }

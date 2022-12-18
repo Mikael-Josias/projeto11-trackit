@@ -96,6 +96,8 @@ export default function HabitsPage(){
         promisse.catch((err) => {
             console.log(err.message)
         });
+
+        getHabits();
     }
 
     return (

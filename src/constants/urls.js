@@ -4,3 +4,4 @@ export const registerNewUserUrl = baseUrl + "/auth/sign-up";
 export const logInUserUrl = baseUrl + "/auth/login";
 
 export const getTodayHabitsListUrl = baseUrl + "/habits/today";
+export const postNewHabit = baseUrl + "/habits";

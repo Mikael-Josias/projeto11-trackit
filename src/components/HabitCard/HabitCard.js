@@ -4,22 +4,24 @@ import WeekdaysCheck from "../WeekdaysCheck/WeekdaysCheck";
 import { ButtonsOptions, StyledButton, StyledCard } from "./styled";
 
 export default function HabitCard(props){
-    const {cancelButton} = props;
+    const {inputHabitName, setInputHabitName} = props;
+    const {selectWeekDay} = props;
+    const {cancelButton, saveButton} = props;
     return (
-        <StyledCard>
-            <StyledInput type="text" placeholder="nome do hábito" />
+        <StyledCard onSubmit={(e) => saveButton(e)}>
+            <StyledInput type="text" placeholder="nome do hábito" value={inputHabitName} onChange={(e) => setInputHabitName(e.target.value)} />
             <div>
-                <WeekdaysCheck value="D" realId="0" />
-                <WeekdaysCheck value="S" realId="1" />
-                <WeekdaysCheck value="T" realId="2" />
-                <WeekdaysCheck value="Q" realId="3" />
-                <WeekdaysCheck value="Q" realId="4" />
-                <WeekdaysCheck value="S" realId="5" />
-                <WeekdaysCheck value="S" realId="6" />
+                <WeekdaysCheck value="D" id="0" onChange={(e) => selectWeekDay(e.target.id)} />
+                <WeekdaysCheck value="S" id="1" onChange={(e) => selectWeekDay(e.target.id)} />
+                <WeekdaysCheck value="T" id="2" onChange={(e) => selectWeekDay(e.target.id)} />
+                <WeekdaysCheck value="Q" id="3" onChange={(e) => selectWeekDay(e.target.id)} />
+                <WeekdaysCheck value="Q" id="4" onChange={(e) => selectWeekDay(e.target.id)} />
+                <WeekdaysCheck value="S" id="5" onChange={(e) => selectWeekDay(e.target.id)} />
+                <WeekdaysCheck value="S" id="6" onChange={(e) => selectWeekDay(e.target.id)} />
             </div>
             <ButtonsOptions>
-                <StyledButton onClick={cancelButton} colored="white">Cancelar</StyledButton>
-                <StyledButton colored="#52B6FF">Salvar</StyledButton>
+                <StyledButton type="button" onClick={cancelButton} colored="white" value="Cancelar"></StyledButton>
+                <StyledButton type="submit" colored="#52B6FF" value="Salvar"></StyledButton>
             </ButtonsOptions>
         </StyledCard>
     );

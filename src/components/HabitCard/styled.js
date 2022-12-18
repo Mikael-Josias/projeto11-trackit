@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.div`
+export const StyledCard = styled.form`
     background-color: white;
     border-radius: 5px;
     padding: 20px 20px 15px 20px;
@@ -15,7 +15,7 @@ export const ButtonsOptions = styled.div`
     width: 100%;
 `;
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.input`
     background-color: ${props => props.colored? props.colored : null};
     color: ${props => props.colored === "white" ? "#52B6FF" : "white"};
     border: none;

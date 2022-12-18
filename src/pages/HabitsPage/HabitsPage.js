@@ -11,7 +11,7 @@ import HabitCard from "../../components/HabitCard/HabitCard";
 import PageContent from "../../components/PageContent/PageContent";
 import TopHeader from "../../components/TopHeader/TopHeader";
 import axios from "axios";
-import { getHabitList, postNewHabit } from "../../constants/urls";
+import { getHabitList, postNewHabit, deleteHabit } from "../../constants/urls";
 
 export default function HabitsPage(){
     const [showCreateHabit, setShowCreateHabit] = useState(false);
@@ -87,6 +87,17 @@ export default function HabitsPage(){
         setCheckHabitDays([]);
     };
 
+    const deleteThisHabit = (habitId) => {
+
+        const promisse = axios.delete(deleteHabit + `${habitId}`, config);
+        promisse.then((res) => {
+            console.log(res.data);
+        });
+        promisse.catch((err) => {
+            console.log(err.message)
+        });
+    }
+
     return (
         <>
             <TopHeader/>
@@ -102,7 +113,7 @@ export default function HabitsPage(){
                 
                 {habitsList === []? <TextSpan colored="#666666">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</TextSpan> : null}
 
-                {habitsList.map((h, i) => <HabitCard isAvailable={false} isChecked={h.days} key={h.id}><TextSpan colored="#666666">{h.name}</TextSpan></HabitCard>)}
+                {habitsList.map((h, i) => <HabitCard isAvailable={false} isChecked={h.days} key={h.id} habitId={h.id} deleteFunction={deleteThisHabit}><TextSpan colored="#666666">{h.name}</TextSpan></HabitCard>)}
             </PageContent>
             <FooterMenu/>
         </>

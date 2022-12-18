@@ -7,8 +7,8 @@ import WeekdaysCheck from "../WeekdaysCheck/WeekdaysCheck";
 export default function HabitCard(props){
     const {inputHabitName, setInputHabitName} = props;
     const {selectWeekDay} = props;
-    const {cancelButton, saveButton} = props;
-
+    const {cancelButton, saveButton, deleteFunction} = props;
+    
     if (props.typeCard === "create") {
         return (
             <StyledCard type={props.typeCard} onSubmit={(e) => saveButton(e)}>
@@ -33,7 +33,7 @@ export default function HabitCard(props){
             <StyledCard>
                 <div>
                     {props.children}
-                    <StyledIcon>
+                    <StyledIcon onClick={() => deleteFunction(props.habitId)}>
                         <img src={trashIcon} />
                     </StyledIcon>
                 </div>

@@ -7,7 +7,6 @@ export default function ProgressBarProvider({children}){
 
     const calculateProgress = (done, total) => {
         const perc = (done / total) * 100;
-        console.log(perc)
         setProgress(perc);
     }
 

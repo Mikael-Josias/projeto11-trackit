@@ -38,7 +38,7 @@ export default function TodayPage(){
         
         const promisse = axios.get(getTodayHabitsListUrl, config);
         promisse.then((res) => {
-            console.log(res.data);
+            
             setTodayHabits(res.data);
 
             let n = 0;
@@ -66,10 +66,8 @@ export default function TodayPage(){
 
         const promisse = axios.post(postCheckHabit + `${id}/${path}`, {}, config);
         promisse.then(() => {
-            console.log("sucesso");
         });
         promisse.catch(() => {
-            console.log("erro");
         });
 
         const newData = [...todayHabits];
@@ -98,7 +96,7 @@ export default function TodayPage(){
                     <div>
                         <Title>{`${today.weekday}, ${today.day}/${today.month}`}</Title>
                     </div>
-                    <TextSpan colored={progress === 0 ?"#BABABA" : "#8FC549"}>{progress === 0? `Nenhum hábito concluído ainda` : `${progress}% dos hábitos concluídos`}</TextSpan>
+                    <TextSpan colored={progress === 0 || isNaN(progress) ?"#BABABA" : "#8FC549"}>{progress === 0 || isNaN(progress) ? `Nenhum hábito concluído ainda` : `${progress}% dos hábitos concluídos`}</TextSpan>
                 </ContentTitle>
 
                 {todayHabits.map((th) => <TodayHabitCard key={th.id} data={th} checkHabit={checkHabit} />)}

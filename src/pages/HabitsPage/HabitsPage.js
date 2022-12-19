@@ -88,16 +88,16 @@ export default function HabitsPage(){
     };
 
     const deleteThisHabit = (habitId) => {
-
-        const promisse = axios.delete(deleteHabit + `${habitId}`, config);
-        promisse.then((res) => {
-            console.log(res.data);
-        });
-        promisse.catch((err) => {
-            console.log(err.message)
-        });
-
-        getHabits();
+        let res = window.confirm("Deseja excluir este hábito?");
+        if(res){
+            const promisse = axios.delete(deleteHabit + `${habitId}`, config);
+            promisse.then((res) => {
+                getHabits();
+            });
+            promisse.catch((err) => {
+                alert(err.message);
+            });
+        }
     }
 
     return (
@@ -113,7 +113,7 @@ export default function HabitsPage(){
                 
                 {showCreateHabit? <HabitCard typeCard="create" isAvailable={true} inputHabitName={inputHabitName} setInputHabitName={setInputHabitName} selectWeekDay={selectWeekDay} cancelButton={hideCreateHabit} saveButton={createNewHabit} /> : null}
                 
-                {habitsList === []? <TextSpan colored="#666666">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</TextSpan> : null}
+                {habitsList.length === 0? <TextSpan colored="#666666">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</TextSpan> : null}
 
                 {habitsList.map((h, i) => <HabitCard isAvailable={false} isChecked={h.days} key={h.id} habitId={h.id} deleteFunction={deleteThisHabit}><TextSpan colored="#666666">{h.name}</TextSpan></HabitCard>)}
             </PageContent>

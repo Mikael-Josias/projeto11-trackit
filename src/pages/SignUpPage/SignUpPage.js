@@ -10,6 +10,8 @@ import SignContainer from "../../components/SignContainer/SignContainer";
 import SignFields from "../../components/SignFields/SignFields";
 import Input from "../../components/Input/Input";
 import SignLink from "../../components/SignLink/SignLink";
+import { ThreeDots } from "react-loader-spinner";
+import { ContainerButton } from "../SignInPage/styled";
 
 
 export default function SignUpPage(){
@@ -52,10 +54,28 @@ export default function SignUpPage(){
                 <Input type="password" placeholder="senha" autocomplete="off" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={loadingRequest} data-test="password-input" />
                 <Input type="text" placeholder="nome" required value={name} onChange={(e) => setName(e.target.value)} disabled={loadingRequest} data-test="user-name-input" />
                 <Input type="url" placeholder="foto" required value={image} onChange={(e) => setImage(e.target.value)} disabled={loadingRequest} data-test="user-image-input" />
-                <Input type="submit" value="Cadastrar" disabled={loadingRequest} data-test="signup-btn" />
+                
+                
+                <ContainerButton>
+                    {loadingRequest && <div>
+                            <ThreeDots
+                                height="45"
+                                width="80"
+                                radius="1"
+                                color="#FFF"
+                                ariaLabel="three-dots-loading"
+                            />
+                        </div>
+                    }
+                
+                    <Input type="submit" value={loadingRequest? "" : "Cadastrar"} disabled={loadingRequest} data-test="signup-btn" />
+                </ContainerButton>
+            
             </SignFields>
 
+            
             <SignLink to="/" valueText="Já tem uma conta? Faça login!" data-test="login-link" />
+
         </SignContainer>
     );
 }

@@ -12,6 +12,8 @@ import SignLink from "../../components/SignLink/SignLink";
 
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
+import { ContainerButton } from "./styled";
 
 export default function SignInPage(){
     const navigate = useNavigate();
@@ -57,7 +59,19 @@ export default function SignInPage(){
                 <Input type="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} data-test="email-input" />
                 <Input type="password" placeholder="senha" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} data-test="password-input" />
 
-                <Input type="submit" value="Entrar" disabled={loading} data-test="login-btn" />
+                <ContainerButton>
+                    {loading && <div>
+                        <ThreeDots
+                            height="45"
+                            width="80"
+                            radius="1"
+                            color="#FFF"
+                            ariaLabel="three-dots-loading"
+                        />
+                    </div>}
+                    
+                    <Input type="submit" value={loading? "" : "Entrar"} disabled={loading} data-test="login-btn" />
+                </ContainerButton>
             </SignFields>
 
             <SignLink to="/cadastro" valueText="Não tem uma conta? Cadastre-se!" data-test="signup-link" />

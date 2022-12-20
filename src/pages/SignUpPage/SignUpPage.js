@@ -48,14 +48,14 @@ export default function SignUpPage(){
             <LogoImage src={logo} />
 
             <SignFields onSubmit={(s) => registerNewUser(s)} >
-                <Input type="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={loadingRequest} />
-                <Input type="password" placeholder="senha" autocomplete="off" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={loadingRequest} />
-                <Input type="text" placeholder="nome" required value={name} onChange={(e) => setName(e.target.value)} disabled={loadingRequest} />
-                <Input type="url" placeholder="foto" required value={image} onChange={(e) => setImage(e.target.value)} disabled={loadingRequest} />
-                <Input type="submit" value="Cadastrar" disabled={loadingRequest} />
+                <Input type="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={loadingRequest} data-test="email-input" />
+                <Input type="password" placeholder="senha" autocomplete="off" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={loadingRequest} data-test="password-input" />
+                <Input type="text" placeholder="nome" required value={name} onChange={(e) => setName(e.target.value)} disabled={loadingRequest} data-test="user-name-input" />
+                <Input type="url" placeholder="foto" required value={image} onChange={(e) => setImage(e.target.value)} disabled={loadingRequest} data-test="user-image-input" />
+                <Input type="submit" value="Cadastrar" disabled={loadingRequest} data-test="signup-btn" />
             </SignFields>
 
-            <SignLink to="/" valueText="Já tem uma conta? Faça login!" />
+            <SignLink to="/" valueText="Já tem uma conta? Faça login!" data-test="login-link" />
         </SignContainer>
     );
 }

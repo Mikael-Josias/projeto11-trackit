@@ -8,15 +8,15 @@ export default function TodayHabitCard(props){
     const {checkHabit, uncheckHabit} = props;
 
     return (
-        <HabitCard>
+        <HabitCard data-test="today-habit-container" >
             <div>
-                <TextSpan colored="#666666" >{data.name}</TextSpan>
-                <MiniSpan>Sequência atual: {data.currentSequence} dia(s)</MiniSpan>
+                <TextSpan colored="#666666" data-test="today-habit-name" >{data.name}</TextSpan>
+                <MiniSpan data-test="today-habit-sequence" >Sequência atual: {data.currentSequence} dia(s)</MiniSpan>
                 <br/>
-                <MiniSpan>Seu recorde: {data.highestSequence} dia(s)</MiniSpan>
+                <MiniSpan data-test="today-habit-record" >Seu recorde: {data.highestSequence} dia(s)</MiniSpan>
             </div>
             <div>
-                <StyledCheck type="checkbox" id={data.id} checked={data.done} onChange={() => checkHabit(data.id, data)} />
+                <StyledCheck type="checkbox" id={data.id} checked={data.done} onChange={() => checkHabit(data.id, data)} data-test="today-habit-check-btn" />
                 <label htmlFor={data.id}><img src={checkIcon} /></label>
             </div>
         </HabitCard>

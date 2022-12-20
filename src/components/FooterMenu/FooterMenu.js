@@ -10,11 +10,11 @@ export default function FooterMenu(){
 
     return (
         <StyledFooter>
-            <NavMenu>
-                <Link to="/habitos">
+            <NavMenu data-test="menu" >
+                <Link to="/habitos" data-test="habit-link" >
                     <ButtonOption>Hábitos</ButtonOption>
                 </Link>
-                <Link to="/hoje">
+                <Link to="/hoje" data-test="today-link" >
                     <RoundButton>
                         <CircularProgressbar
                             value={progress}
@@ -34,7 +34,7 @@ export default function FooterMenu(){
                             })}></CircularProgressbar>
                     </RoundButton>                                
                 </Link>
-                <Link to="/historico">
+                <Link to="/historico" data-test="history-link" >
                     <ButtonOption>Histórico</ButtonOption>
                 </Link>
             </NavMenu>

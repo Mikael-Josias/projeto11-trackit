@@ -104,9 +104,9 @@ export default function TodayPage(){
             <PageContent>
                 <ContentTitle showButton={false}>
                     <div>
-                        <Title>{`${today.weekday}, ${today.day}/${today.month}`}</Title>
+                        <Title data-test="today" >{`${today.weekday}, ${today.day}/${today.month}`}</Title>
                     </div>
-                    <TextSpan colored={progress === 0 || isNaN(progress) ?"#BABABA" : "#8FC549"}>{progress === 0 || isNaN(progress) ? `Nenhum hábito concluído ainda` : `${progress}% dos hábitos concluídos`}</TextSpan>
+                    <TextSpan colored={progress === 0 || isNaN(progress) ?"#BABABA" : "#8FC549"} data-test="today-counter" >{progress === 0 || isNaN(progress) ? `Nenhum hábito concluído ainda` : `${progress}% dos hábitos concluídos`}</TextSpan>
                 </ContentTitle>
 
                 {todayHabits.map((th) => <TodayHabitCard key={th.id} data={th} checkHabit={checkHabit} />)}

@@ -9,7 +9,7 @@ export default function TopHeader(){
     const {userData} = useContext(UserContext);
 
     return (
-        <StyledHeader>
+        <StyledHeader data-test="header" >
             <LogoImage src={trackItLogo} />
             <UserPicture src={userData? userData.image : null} />
         </StyledHeader>

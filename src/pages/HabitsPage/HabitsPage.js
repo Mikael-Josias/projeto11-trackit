@@ -115,7 +115,7 @@ export default function HabitsPage(){
                 
                 {habitsList.length === 0? <TextSpan colored="#666666">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</TextSpan> : null}
 
-                {habitsList.map((h, i) => <HabitCard isAvailable={false} isChecked={h.days} key={h.id} habitId={h.id} deleteFunction={deleteThisHabit}><TextSpan colored="#666666">{h.name}</TextSpan></HabitCard>)}
+                {habitsList.map((h, i) => <HabitCard isAvailable={false} isChecked={h.days} key={h.id} habitId={h.id} deleteFunction={deleteThisHabit}><TextSpan colored="#666666" data-test="habit-name">{h.name}</TextSpan></HabitCard>)}
             </PageContent>
             <FooterMenu/>
         </>

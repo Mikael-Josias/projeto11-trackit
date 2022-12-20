@@ -54,13 +54,13 @@ export default function SignInPage(){
             <LogoImage src={logo} />
 
             <SignFields onSubmit={(e) => LogIn(e)} >
-                <Input type="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
-                <Input type="password" placeholder="senha" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} />
+                <Input type="email" placeholder="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} data-test="email-input" />
+                <Input type="password" placeholder="senha" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} data-test="password-input" />
 
-                <Input type="submit" value="Entrar" disabled={loading} />
+                <Input type="submit" value="Entrar" disabled={loading} data-test="login-btn" />
             </SignFields>
 
-            <SignLink to="/cadastro" valueText="Não tem uma conta? Cadastre-se!" />
+            <SignLink to="/cadastro" valueText="Não tem uma conta? Cadastre-se!" data-test="signup-link" />
         </SignContainer>
     );
 }

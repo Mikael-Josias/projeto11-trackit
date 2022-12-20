@@ -34,7 +34,7 @@ export default function FooterMenu(){
                             })}></CircularProgressbar>
                     </RoundButton>                                
                 </Link>
-                <Link to="historico">
+                <Link to="/historico">
                     <ButtonOption>Histórico</ButtonOption>
                 </Link>
             </NavMenu>

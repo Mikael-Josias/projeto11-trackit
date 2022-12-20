@@ -63,7 +63,7 @@ export default function TodayPage(){
             path = "uncheck";
             n -= 2;
         }
-
+        console.log(data);
         const promisse = axios.post(postCheckHabit + `${id}/${path}`, {}, config);
         promisse.then(() => {
         });
@@ -75,9 +75,19 @@ export default function TodayPage(){
         newData.forEach((d) => {
             if (d.id === data.id) {
                 if (data.done) {
-                    data.done = false;
+                    data.done = false
+                    data.currentSequence -= 1;
+
+                    if (data.currentSequence < data.highestSequence) {
+                        data.highestSequence -= 1;
+                    }
                 }else{
                     data.done = true;
+                    data.currentSequence += 1;
+                    
+                    if (data.currentSequence > data.highestSequence) {
+                        data.highestSequence += 1;
+                    }
                 }
             }
         });
